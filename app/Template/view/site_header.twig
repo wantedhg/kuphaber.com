@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <title>{{site_title|raw}}</title>
+    <link rel="stylesheet" href="{{G_CSSLINK}}vendor/component.css" />
+    <link rel="stylesheet" href="{{G_CSSLINK}}vendor/hover.css"/>
+    <link rel="stylesheet" href="{{G_CSSLINK}}vendor/jquery.mCustomScrollbar.min.css"/>
+    <link rel="stylesheet" href="{{G_CSSLINK}}main_2.css"/>
+
+	<link rel="canonical" href="{{site_canonical}}"/>
+    <script src="{{G_JSLINK}}vendor/jquery.min.js"></script>
+	<script src="{{G_JSLINK}}vendor/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="{{G_JSLINK}}vendor/jquery.lazyloadxt.min.js"></script>
+	<script src="{{G_JSLINK}}vendor/classie.js"></script>
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-79392614-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+</head>
+<body class="cbp-spmenu-push">
+
+<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+    <h3><i class="kup-icon icon-menu">&#xe80f;</i> Haber Kaynakları</h3>
+
+    <ul class="kaynak-menu">
+        <li class="menu-title"><i class="kup-icon icon-globe">&#xe818;</i> <a href="{{array_cat_url.12}}">{{array_cat_name.12}}</a></li>
+		{% for k, item in source_savunma %}
+			<li><a href="{{SITELINK}}source/{{k}}"><i class="kup-icon icon-angle-right">&#xe825;</i> {{item}}</a></li>
+		{% endfor %}
+    </ul>
+
+    <ul class="kaynak-menu">
+        <li class="menu-title"><i class="kup-icon icon-globe">&#xe818;</i> <a href="{{array_cat_url.59}}">{{array_cat_name.59}}</a></li>
+		{% for k, item in source_technology %}
+			<li><a href="{{SITELINK}}source/{{k}}"><i class="kup-icon icon-angle-right">&#xe825;</i> {{item}}</a></li>
+		{% endfor %}
+    </ul>
+
+    <ul class="kaynak-menu">
+        <li class="menu-title"><i class="kup-icon icon-globe">&#xe818;</i> <a href="{{array_cat_url.9}}">{{array_cat_name.9}}</a></li>
+		{% for k, item in source_teknoloji %}
+			<li><a href="{{SITELINK}}source/{{k}}"><i class="kup-icon icon-angle-right">&#xe825;</i> {{item}}</a></li>
+		{% endfor %}
+    </ul>
+
+    <ul class="kaynak-menu">
+        <li class="menu-title"><i class="kup-icon icon-globe">&#xe818;</i> <a href="{{array_cat_url.11}}">{{array_cat_name.11}}</a></li>
+		{% for k, item in source_bilim %}
+			<li><a href="{{SITELINK}}source/{{k}}"><i class="kup-icon icon-angle-right">&#xe825;</i> {{item}}</a></li>
+		{% endfor %}
+    </ul>
+
+    <ul class="kaynak-menu">
+        <li class="menu-title"><i class="kup-icon icon-globe">&#xe818;</i> <a href="{{array_cat_url.10}}">{{array_cat_name.10}}</a></li>
+		{% for k, item in source_kultursanat %}
+			<li><a href="{{SITELINK}}source/{{k}}"><i class="kup-icon icon-angle-right">&#xe825;</i> {{item}}</a></li>
+		{% endfor %}
+    </ul>
+
+
+</nav>
+
+<header>
+    <div class="top">
+        <div class="grid-12">
+            <div class="logo">
+                <a href="{{LINK_INDEX}}">
+                    <img src="{{G_IMGLINK}}logo.png" height="40" width="134" alt="Küp Haber Logo">
+                </a>
+            </div>
+
+{#            <div class="app">
+                <a href="">
+                    <img src="{{G_IMGLINK}}google_play.png" width="120" height="40" alt="Google Play İcon">
+                </a>
+            </div>#}
+
+            <div class="app">
+                <a title="Küp Tekno" href="https://itunes.apple.com/mt/app/k%C3%BCp-tekno/id1127046711">
+                    <img src="{{G_IMGLINK}}app_store.png" width="120" height="40" alt="App Store İcon">
+                </a>
+            </div>
+        </div>
+    </div>
+    <nav>
+       <div class="grid-12">
+           <div  id="open-side-menu" class="c-hamburger c-hamburger--htx">
+               <span></span>
+               <span></span>
+               <span></span>
+           </div>
+           <ul id="menu">
+               <li><a href="{{array_cat_url.1}}" class="hvr-sweep-to-top"><i class="kup-icon">&#xe81c;</i> {{array_cat_name.1}}</a></li>
+               <li><a href="{{array_cat_url.2}}" class="hvr-sweep-to-top"><i class="kup-icon">&#xe801;</i> {{array_cat_name.2}}</a></li>
+               <li><a href="{{array_cat_url.3}}" class="hvr-sweep-to-top"><i class="kup-icon">&#xe802;</i> {{array_cat_name.3}}</a></li>
+               <li><a href="{{array_cat_url.4}}" class="hvr-sweep-to-top"><i class="kup-icon">&#xe81f;</i> {{array_cat_name.4}}</a></li>
+               <li><a href="{{array_cat_url.5}}" class="hvr-sweep-to-top"><i class="kup-icon">&#xe805;</i> {{array_cat_name.5}}</a></li>
+               <li><a href="{{array_cat_url.6}}" class="hvr-sweep-to-top"><i class="kup-icon">&#xe817;</i> {{array_cat_name.6}}</a></li>
+               <li><a href="{{array_cat_url.7}}" class="hvr-sweep-to-top"><i class="kup-icon">&#xe808;</i> {{array_cat_name.7}}</a></li>
+               <li><a href="{{array_cat_url.8}}" class="hvr-sweep-to-top"><i class="kup-icon">&#xe806;</i> {{array_cat_name.8}}</a></li>
+               <li><a href="{{array_cat_url.9}}" class="hvr-sweep-to-top"><i class="kup-icon">&#xe803;</i> {{array_cat_name.9}}</a></li>
+               <li><a href="{{array_cat_url.10}}" class="hvr-sweep-to-top"><i class="kup-icon">&#xe820;</i> {{array_cat_name.10}}</a></li>
+               <li><a href="{{array_cat_url.11}}" class="hvr-sweep-to-top"><i class="kup-icon">&#xe816;</i> {{array_cat_name.11}}</a></li>
+           </ul>
+       </div>
+    </nav>
+</header>

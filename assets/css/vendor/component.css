@@ -1,0 +1,139 @@
+/* General styles for all menus */
+
+.cbp-spmenu
+{
+	background: #555;
+	position: fixed;
+
+
+}
+
+
+
+.cbp-spmenu h3
+{
+	color: #eee;
+	font-size: 16px;
+	padding: 10px;
+	font-weight: 300;
+	border-bottom: 1px solid #484848;
+}
+
+.cbp-spmenu ul
+{
+	float: left;
+	width: 100%;
+	padding: 10px;
+}
+.cbp-spmenu ul li.menu-title
+{
+	font-weight: 600;
+}
+.cbp-spmenu ul li
+{
+	display: block;
+	padding: 5px;
+	font-size:14px;
+	color: #eee;
+}
+
+/* Orientation-dependent styles for the content of the menu */
+
+.cbp-spmenu-vertical {
+	width: 280px;
+	height: 100%;
+	top: 0;
+	z-index: 1000;
+}
+
+.cbp-spmenu-vertical::-webkit-scrollbar-track {
+	background-color: #b46868;
+} /* the new scrollbar will have a flat appearance with the set background color */
+
+.cbp-spmenu-vertical::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, 0.2);
+} /* this will style the thumb, ignoring the track */
+
+.cbp-spmenu-vertical::-webkit-scrollbar-button {
+	background-color: #7c2929;
+} /* optionally, you can style the top and the bottom buttons (left and right for horizontal bars) */
+
+.cbp-spmenu-vertical::-webkit-scrollbar-corner {
+	background-color: black;
+}
+
+
+
+
+.cbp-spmenu-left {
+	left: -280px;
+}
+
+
+.cbp-spmenu-left.cbp-spmenu-open {
+	left: 0px;
+}
+
+
+.cbp-spmenu-push {
+	overflow-x: hidden;
+	position: relative;
+	left: 0;
+}
+
+.cbp-spmenu-push-toright {
+	left: 240px;
+}
+
+.cbp-spmenu-push-toleft {
+	left: -240px;
+}
+
+/* Transitions */
+
+.cbp-spmenu,
+.cbp-spmenu-push {
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+
+/* Example media queries */
+
+@media screen and (max-width: 55.1875em){
+
+	.cbp-spmenu-horizontal {
+		font-size: 75%;
+		height: 110px;
+	}
+
+	.cbp-spmenu-top {
+		top: -110px;
+	}
+
+	.cbp-spmenu-bottom {
+		bottom: -110px;
+	}
+
+}
+
+@media screen and (max-height: 26.375em){
+
+	.cbp-spmenu-vertical {
+		font-size: 90%;
+		width: 190px;
+	}
+
+	.cbp-spmenu-left,
+	.cbp-spmenu-push-toleft {
+		left: -190px;
+	}
+
+	.cbp-spmenu-right {
+		right: -190px;
+	}
+
+	.cbp-spmenu-push-toright {
+		left: 190px;
+	}
+}

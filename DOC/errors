@@ -1,0 +1,10 @@
+PHP Fatal error:  Uncaught Error: Call to a member function find() on boolean in /home/kh/public_html/app/CLASS/m/merlininkazani.php:38
+
+TODO: Mashable, Twitter üstüne falan alınacak, çok fazla ve ilintisiz içerik çekiyor
+
+TODO: ->origLink atıfları kontrol edilecek, yayında ve testte farklı davranıyor
+
+TODO: mydroneland.com, site kapalıydı. Sitemap üstünden yeniden ele alınacak (http://www.mydroneland.com/robots.txt)
+
+TODO: technosfer güncellenmiyor olabilir mi?
+

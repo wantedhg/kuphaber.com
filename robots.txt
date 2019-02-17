@@ -1,0 +1,5 @@
+Host: www.kuphaber.com
+
+User-agent: *
+allow: /
+Disallow: /assets/

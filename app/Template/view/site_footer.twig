@@ -1,0 +1,34 @@
+<footer>
+    <div class="grid-12">
+        <div class="copyright">
+             &copy; Küp Haber - Bir Elluga ürünüdür.
+        </div>
+
+        <div class="app-link">
+            <a title="Küp Tekno" href="https://itunes.apple.com/mt/app/k%C3%BCp-tekno/id1127046711">
+                <img src="{{G_IMGLINK}}app_store.png" width="120" height="40" alt="App Store İcon">
+            </a>
+        </div>
+{#        <div class="app-link">
+            <a href="">
+                <img src="{{G_IMGLINK}}google_play.png" width="120" height="40" alt="Google Play İcon">
+            </a>
+        </div>#}
+    </div>
+</footer>
+
+<script src="{{G_JSLINK}}main_2.js"></script>
+<script src="{{G_JSLINK}}vendor/classie.js"></script>
+<script src="{{G_JSLINK}}vendor/wookmark.min.js"></script>
+<script type="text/javascript">
+    window.onload = function ()
+    {
+        var wookmark1 = new Wookmark('#news-list', {
+            outerOffset: 0, // Optional, the distance to the containers border
+            itemWidth: 244, // Optional, the width of a grid item
+            offset: 16
+        });
+    };
+</script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<?php
+
+	class engadget
+	{
+		public function rss_fetch($url, $type)
+		{
+			global $_content;
+
+			$data_curl = curl_get_data($url);
+
+			//gelen datadan channel kısmını alıyoruz; diğer bilgilerde koruyucu kısımlar olabiliyor
+			preg_match('/<channel>([\w\W]*?)<\/channel>/', $data_curl, $data);
+
+			$data = simplexml_load_string($data[0]);
+			$adet = count($data->item);
+			if($adet > 0)
+			{
+				for($i = 0; $i < $adet; $i++)
+				{
+					$list[$i]['cache_time']			= date('Y-m-d H:i:s', strtotime(strip_tags($data->item[$i]->pubDate)));
+					$list[$i]['cache_link']			= trim(strip_tags($data->item[$i]->link));
+					$list[$i]['cache_title']		= trim(strip_tags($data->item[$i]->title));
+					$list[$i]['cache_desc']			= trim(strip_tags($data->item[$i]->description));
+					$list[$i]['cache_object']		= $type;
+
+					//kategori seçimi yapıyoruz
+					$list[$i]['cache_cat']			= 59;
+
+					//imaj yakala
+					$text = '';
+					if($text == '')
+					{
+						$html = str_get_html($data->item[$i]->description);
+
+						if($html <> '')
+						{
+							$text = $html->find('img', 0)->src;
+
+							//bellek boşaltıyoruz
+							$html->clear();
+							unset($html);
+						}
+
+						//resim dims ile aol cdn üstünden geliyorsa
+						//url decode ediyoruz
+						$text = urldecode(str_replace('&amp;','&',$text));
+
+						//belli url mantıklarına izin vermiyoruz
+						//galeri içerik veya video dönüyorlar
+						$array_url  = array(
+							'aolcdn.com/images/dims',
+						);
+						if(strpos_array($text, $array_url) == true)
+						{
+							$t = parse_url($text);
+							parse_str($t['query'], $out);
+							//print_pre($out);
+							if($out['image_uri'] <> '')
+							{
+								$text = $out['image_uri'];
+							}
+						}
+
+						//değişkene atıyoruz
+						$list[$i]['cache_image'] = trim(urldecode(urlencode($text)));
+					}
+				}
+			}
+
+			//rss'i parse ettik, artık veritabanına alabiliriz
+ 			//print_pre($list);
+			if($adet > 0)
+			{
+				$list_url = $_content->content_url_list($type);
+				//print_pre($list_url);
+
+				for($i = 0; $i < $adet; $i++)
+				{
+					//kayıttın önce bu içerik eklenmiş mi diye kontrol ediyoruz
+ 					if(!in_array($list[$i]['cache_link'], $list_url))
+					{
+						//hata sayısını sıfırlayalım ki break edip hepsi hata diye kırılmasın
+						$hata = 0;
+
+						//belli url mantıklarına izin vermiyoruz
+						//galeri içerik veya video dönüyorlar
+						$array_url  = array(
+							'http://www.engadget.com/yazarlar/',
+						);
+						if(strpos_array($list[$i]['cache_link'], $array_url) == true)
+						{
+							$hata = 1;
+						}
+
+						if($hata <> 1)
+						{
+
+							$_REQUEST['content_link']		= $list[$i]['cache_link'];
+							$_REQUEST['content_title']		= $list[$i]['cache_title'];
+							$_REQUEST['content_desc']		= $list[$i]['cache_desc'];
+							$_REQUEST['content_image']		= $list[$i]['cache_image'];
+							$_REQUEST['content_time']		= $list[$i]['cache_time'];
+							$_REQUEST['content_cat']		= $list[$i]['cache_cat'];
+							$_REQUEST['content_source']		= $list[$i]['cache_object'];
+							//ekliyoruz
+							//print_pre($list[$i]);
+							$_content->content_add($query = 0, $fileExt = 'jpg');
+							//eklendi işareti dönüyoruz
+							echo '.';
+
+							//üst diziye url'yi ekleyelim
+							$list_url[] = $list[$i]['cache_link'];
+							//print_pre($list_url);
+						}
+					}
+					else
+					{
+						echo '!';
+					}
+				}
+			}
+		}
+	}

@@ -1,0 +1,32 @@
+<main id="container" class="content">
+	<ul class="grid effect-1" id="news-list">
+		{% for item in list_content %}
+		<li id="{{item.content_id}}">
+			<a
+				target="_blank"
+				href="{{item.content_link}}">
+				{% if item.content_image != '' %}
+					<img
+						src="{{item.content_image|raw}}"
+						alt="{{item.content_title|striptags}}"
+						width="244"
+						height="auto"
+					/>
+				{% endif %}
+				<div class="news-title">{{item.content_title|raw}}</div>
+				{% if item.content_desc != '' %}
+					<div class="news-text">
+						{{item.content_desc|raw}}
+					</div>
+				{% endif %}
+				<div class="news-source">
+					{{item.content_source_name}}
+					<i class="kup-icon">&#xe80d;</i>
+					{{item.content_time|time_diff}}
+				</div>
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+</main>
+

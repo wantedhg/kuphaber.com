@@ -1,0 +1,101 @@
+# Kötü çocukları yasaklayalım
+# Order Deny,Allow
+# Deny from 212.154.95.254
+
+<IfModule mod_headers.c>
+	<FilesMatch ".(eot|ttf|otf|woff)">
+		Header set Access-Control-Allow-Origin "*"
+	</FilesMatch>
+</IfModule>
+
+<IfModule mod_headers.c>
+	<FilesMatch "\.(jpg|jpeg|png|css|js)$">
+		Header set Cache-Control "max-age=604800, public"
+	</FilesMatch>
+</IfModule>
+
+#----------------------------------------------------------------------
+# siteye özel .htaccess dosyasıdır.
+# dosya üstünde yapacağınız her değişiklik sistemi etkileyecektir.
+#----------------------------------------------------------------------
+
+# SetEnv TZ Europe/Istanbul
+SetEnv variables_order GPSC
+
+#----------------------------------------------------------------------
+# dosya sıralamasını değiştiriyoruz
+#----------------------------------------------------------------------
+
+DirectoryIndex index.php?type=index&id=9&pg=0 index.html
+
+#----------------------------------------------------------------------
+# Rewrite aktif ediliyor
+#----------------------------------------------------------------------
+
+Options +FollowSymLinks
+RewriteEngine On
+RewriteBase /
+
+#----------------------------------------------------------------------
+# yönlendirme ve hata verme pageları
+#----------------------------------------------------------------------
+
+ErrorDocument 404 /404.php
+
+#----------------------------------------------------------------------
+# www yönlendirmesi
+#----------------------------------------------------------------------
+
+rewritecond %{http_host} ^kuphaber.com [nc]
+rewriterule ^(.*)$ http://www.kuphaber.com/$1 [R=302,L]
+
+#----------------------------------------------------------------------
+# refli bağlantılar ile oluşturulan spamları önleyelim
+#----------------------------------------------------------------------
+
+RewriteCond %{THE_REQUEST} \?(ref=.*)?\ HTTP [NC]
+RewriteRule .? http://www.kuphaber.com? [R=302,L]
+
+#----------------------------------------------------------------------
+#CDN refresh amaçlı sürüm hilesi
+#----------------------------------------------------------------------
+
+Rewriterule ^assets/css/main_([0-9]*).css$				assets/css/main.css [L]
+Rewriterule ^assets/js/main_([0-9]*).js$				assets/js/main.js [L]
+
+#----------------------------------------------------------------------
+# içerik url yeniden yazma kuralları
+#----------------------------------------------------------------------
+
+# Türkçe Kategoriler
+Rewriterule ^diger$							index.php?type=index&id=0&pg=0 [L]
+Rewriterule ^gundem$						index.php?type=index&id=1&pg=0 [L]
+Rewriterule ^spor$							index.php?type=index&id=2&pg=0 [L]
+Rewriterule ^ekonomi$						index.php?type=index&id=3&pg=0 [L]
+Rewriterule ^siyaset$						index.php?type=index&id=4&pg=0 [L]
+Rewriterule ^dunya$							index.php?type=index&id=5&pg=0 [L]
+Rewriterule ^yasam$							index.php?type=index&id=6&pg=0 [L]
+Rewriterule ^magazin$						index.php?type=index&id=7&pg=0 [L]
+Rewriterule ^sinema$						index.php?type=index&id=8&pg=0 [L]
+Rewriterule ^teknoloji$						index.php?type=index&id=9&pg=0 [L]
+Rewriterule ^kultur$						index.php?type=index&id=10&pg=0 [L]
+Rewriterule ^bilim$							index.php?type=index&id=11&pg=0 [L]
+Rewriterule ^savunma$						index.php?type=index&id=12&pg=0 [L]
+
+# İngilizce Kategoriler
+Rewriterule ^other$							index.php?type=index&id=50&pg=0 [L]
+Rewriterule ^journal$						index.php?type=index&id=51&pg=0 [L]
+Rewriterule ^sports$						index.php?type=index&id=52&pg=0 [L]
+Rewriterule ^economy$						index.php?type=index&id=53&pg=0 [L]
+Rewriterule ^politics$						index.php?type=index&id=54&pg=0 [L]
+Rewriterule ^world$							index.php?type=index&id=55&pg=0 [L]
+Rewriterule ^life$							index.php?type=index&id=56&pg=0 [L]
+Rewriterule ^magazine$						index.php?type=index&id=57&pg=0 [L]
+Rewriterule ^cinema$						index.php?type=index&id=58&pg=0 [L]
+Rewriterule ^technology$					index.php?type=index&id=59&pg=0 [L]
+Rewriterule ^culture$						index.php?type=index&id=60&pg=0 [L]
+Rewriterule ^science$						index.php?type=index&id=61&pg=0 [L]
+Rewriterule ^defence$						index.php?type=index&id=62&pg=0 [L]
+
+Rewriterule ^source/(.+)$					index.php?type=source&key=$1&pg=0 [L]
+

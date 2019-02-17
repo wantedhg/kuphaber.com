@@ -1,0 +1,6 @@
+adminer.php
+cache/
+assets/uploads/
+assets/uploads_thumbs/
+.idea/
+DOC/.~lock*
